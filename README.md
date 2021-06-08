@@ -1,4 +1,4 @@
-# vue-stat-app
+# vue-stock-app
 
 ## Project setup
 ```
