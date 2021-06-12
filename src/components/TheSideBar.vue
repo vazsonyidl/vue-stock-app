@@ -1,6 +1,8 @@
 <template>
   <nav class="container">
-    <router-link to="/"><img src="../assets/home.svg" alt="Home icon"/></router-link>
+    <router-link to="/">
+      <v-icon>mdi-home</v-icon>
+    </router-link>
   </nav>
 </template>
 
