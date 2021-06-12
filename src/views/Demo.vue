@@ -1,11 +1,15 @@
 <template>
   <section>
-    Home works
+    Demo works!
   </section>
 </template>
 
-<script lang="ts">
+<script>
 export default {
-  name: 'Home',
-}
+  name: 'Demo'
+};
 </script>
+
+<style scoped>
+
+</style>
