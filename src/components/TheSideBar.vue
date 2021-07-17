@@ -2,6 +2,7 @@
   <nav class="container">
     <router-link to="/"><v-icon>mdi-home</v-icon></router-link>
     <router-link to="/first-section"><v-icon>mdi-fingerprint</v-icon></router-link>
+    <router-link to="/assignments"><v-icon>mdi-fingerprint</v-icon></router-link>
   </nav>
 </template>
 
