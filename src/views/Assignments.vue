@@ -1,23 +1,42 @@
 <template>
   <section id="assignment">
-    <!-- 1) Output your name -->
-    <h2>{{name}}</h2>
-    <!-- 2) Output your age -->
-    <p>{{calculateAge}}</p>
-    <!-- 3) Output your age + 5 -->
-    <!-- DANGER ZONE  -->
-    <p>{{increaseAge(5)}}</p>
-    <!-- 4) Output a random number (0 to 1) -->
-    <p @click="random">
-      <span v-if="!randomNumber">Generate random number</span>
-      <span v-else>{{randomNumber}}</span>
-    </p>
-    <div>
-      <!-- 5) Display some image you found via Google -->
-      <img :src="imageSrc"  alt="goldenRetriever"/>
-    </div>
-    <!-- 6) Prepopulate the input field with your name via the "value" attribute -->
-    <input v-model="name" type="text" />
+    <section class="first">
+      <!-- 1) Output your name -->
+      <h2>{{ name }}</h2>
+      <!-- 2) Output your age -->
+      <p>{{ calculateAge }}</p>
+      <!-- 3) Output your age + 5 -->
+      <!-- DANGER ZONE  -->
+      <p>{{ increaseAge(5) }}</p>
+      <!-- 4) Output a random number (0 to 1) -->
+      <p @click="random">
+        <span v-if="!randomNumber">Generate random number</span>
+        <span v-else>{{ randomNumber }}</span>
+      </p>
+      <div>
+        <!-- 5) Display some image you found via Google -->
+        <img :src="imageSrc" alt="goldenRetriever"/>
+      </div>
+      <!-- 6) Prepopulate the input field with your name via the "value" attribute -->
+      <input v-model="name" type="text"/>
+    </section>
+    <section class="second">
+      <h2>Event Practice</h2>
+      <!-- 1) Show an alert (any text of your choice) when the button is pressed -->
+      <button @click="onShowAlert('Cat')">Show Alert</button>
+      <hr />
+      <!-- 2) Register the user input on "keydown" and output it in the paragraph (hint: event.target.value helps) -->
+      <input @keyup="onKeyup($event)" type="text" />
+      <p>{{pressedKey}}</p>
+      <hr />
+      <!-- 3) Repeat 2) but only output the entered value if the ENTER key was pressed -->
+      <input
+          @keyup="onKeyup"
+          @keydown.enter="onEnter"
+          type="text" />
+      <p>{{confirmedInput}}</p>
+    </section>
+
   </section>
 </template>
 
@@ -29,8 +48,11 @@ export default {
       name: 'Daniel Vazsonyi',
       birthDate: new Date(1997, 9, 6),
       randomNumber: null,
-      imageSrc: 'https://www.rover.com/blog/wp-content/uploads/2016/02/6818283013_0262163f5e_o.jpg'
-    }
+      imageSrc: 'https://www.rover.com/blog/wp-content/uploads/2016/02/6818283013_0262163f5e_o.jpg',
+      // SECOND
+      pressedKey: '',
+      confirmedInput: null,
+    };
   },
   computed: {
     calculateAge: function () {
@@ -38,6 +60,7 @@ export default {
     }
   },
   methods: {
+    // FIRST
     increaseAge: function (year = 0) {
       /**
        * @sad-info: This will run whenever CD runs as Vue does not "track" dependencies for methods /called from template/
@@ -48,6 +71,16 @@ export default {
     random: function () {
       console.log('generate random runs');
       this.randomNumber = Math.random();
+    },
+    // SECOND
+    onShowAlert(text) {
+      alert(text);
+    },
+    onKeyup(event) {
+      this.pressedKey = event?.target?.value;
+    },
+    onEnter(event) {
+      this.confirmedInput = event?.target?.value;
     }
   }
 };
